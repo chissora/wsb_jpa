@@ -10,6 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import java.util.Collection;
+import javax.persistence.CascadeType;
+
+
 
 @Entity
 @Table(name = "DOCTOR")
@@ -93,4 +101,16 @@ public class DoctorEntity {
 		this.specialization = specialization;
 	}
 
+	// One direction
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<VisitEntity> visits;
+
+	// Many-to-Many
+	@ManyToMany
+	@JoinTable(
+			name = "DOCTOR_TO_ADDRESS",
+			joinColumns = @JoinColumn(name = "doctor_id", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "address_id", nullable = false)
+	)
+	private Collection<AddressEntity> addresses;
 }

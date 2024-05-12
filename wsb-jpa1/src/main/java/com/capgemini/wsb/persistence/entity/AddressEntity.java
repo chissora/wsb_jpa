@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import java.util.Collection;
+import javax.persistence.Column;
+
+
 
 @Entity
 @Table(name = "ADDRESS")
@@ -14,12 +19,16 @@ public class AddressEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String city;
 
+	@Column(nullable = false)
 	private String addressLine1;
 
+	@Column(nullable = false)
 	private String addressLine2;
 
+	@Column(nullable = false)
 	private String postalCode;
 
 	public Long getId() {
@@ -61,5 +70,11 @@ public class AddressEntity {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
+
+	@ManyToMany(mappedBy = "addresses")
+	private Collection<PatientEntity> patients;
+
+	@ManyToMany(mappedBy = "addresses")
+	private Collection<DoctorEntity> doctors;
 
 }
