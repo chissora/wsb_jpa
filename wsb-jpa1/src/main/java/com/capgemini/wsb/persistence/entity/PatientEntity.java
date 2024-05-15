@@ -1,20 +1,18 @@
 package com.capgemini.wsb.persistence.entity;
 
 import java.time.LocalDate;
-
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
-import java.util.Collection;
-import javax.persistence.CascadeType;
-
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "PATIENT")
@@ -40,6 +38,21 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	@Column(nullable = false)
+	private int age;
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<VisitEntity> visits;
+
+	@ManyToMany
+	@JoinTable(
+			name = "PATIENT_TO_ADDRESS",
+			joinColumns = @JoinColumn(name = "patient_id", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "address_id", nullable = false)
+	)
+	private Set<AddressEntity> addresses;
+
 
 	public Long getId() {
 		return id;
@@ -97,16 +110,27 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	// One direction
-	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<VisitEntity> visits;
+	public Set<VisitEntity> getVisits() {
+		return visits;
+	}
 
-	// Many-to-Many
-	@ManyToMany
-	@JoinTable(
-			name = "PATIENT_TO_ADDRESS",
-			joinColumns = @JoinColumn(name = "patient_id", nullable = false),
-			inverseJoinColumns = @JoinColumn(name = "address_id", nullable = false)
-	)
-	private Collection<AddressEntity> addresses;
+	public void setVisits(Set<VisitEntity> visits) {
+		this.visits = visits;
+	}
+
+	public Set<AddressEntity> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<AddressEntity> addresses) {
+		this.addresses = addresses;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 }

@@ -1,21 +1,17 @@
 package com.capgemini.wsb.persistence.entity;
 
 import java.time.LocalDateTime;
-
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.JoinColumn;
-import java.util.Collection;
-import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-
-
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "VISIT")
@@ -30,6 +26,19 @@ public class VisitEntity {
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<MedicalTreatmentEntity> medicalTreatments;
+
+	@ManyToOne
+	@JoinColumn(name = "doctor_id", nullable = false)
+	private DoctorEntity doctor;
+
+	@ManyToOne
+	@JoinColumn(name = "patient_id", nullable = false)
+	private PatientEntity patient;
+
+	// Getters and Setters
 
 	public Long getId() {
 		return id;
@@ -55,22 +64,27 @@ public class VisitEntity {
 		this.time = time;
 	}
 
-	// One direction
-	@OneToMany(
-			mappedBy = "visit",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-	)
-	private Collection<MedicalTreatmentEntity> medicalTreatments;
+	public Collection<MedicalTreatmentEntity> getMedicalTreatments() {
+		return medicalTreatments;
+	}
 
-	// Two direction
-	@ManyToOne
-	@JoinColumn(name = "doctor_id", nullable = false)
-	private DoctorEntity doctor;
+	public void setMedicalTreatments(Collection<MedicalTreatmentEntity> medicalTreatments) {
+		this.medicalTreatments = medicalTreatments;
+	}
 
-	// Two direction
-	@ManyToOne
-	@JoinColumn(name = "patient_id", nullable = false)
-	private PatientEntity patient;
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
 
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
 }
