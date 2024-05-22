@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ef2201b-1bd5-4571-95e8-ce934c578967" name="Changes" comment="LAB1 Add SQL inserts, Fix code, Add relation">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/dto/DoctorTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/dto/PatientTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/dto/VisitTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/mapper/DoctorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/mapper/PatientMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/mapper/VisitMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/PatientDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/impl/PatientDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/service/PatientService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/service/impl/PatientServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/test/com/capgemini/wsb/service/PatientServiceTest.java" afterDir="false" />
+    <list default="true" id="6ef2201b-1bd5-4571-95e8-ce934c578967" name="Changes" comment="LAB2 Data access for the Patient Entity and tests">
+      <change afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/test/com/capgemini/wsb/persistance/dao/PatientDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/DoctorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/DoctorEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/PatientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/PatientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/VisitEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/entity/VisitEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/PatientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/PatientDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/impl/PatientDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/java/com/capgemini/wsb/persistence/dao/impl/PatientDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wsb-jpa1/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/wsb-jpa1/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +47,9 @@
     "Application.WsbJpaApplication.executor": "Run",
     "JUnit.AddressDaoTest.executor": "Run",
     "JUnit.All in wsb-jpa1.executor": "Run",
+    "JUnit.PatientDaoTest (1).executor": "Run",
+    "JUnit.PatientDaoTest.executor": "Run",
+    "JUnit.PatientDaoTest.testFindPatientsWithMoreThanXVisits.executor": "Run",
     "JUnit.PatientServiceTest.executor": "Run",
     "Maven.wsb-jpa1 [clean].executor": "Run",
     "Maven.wsb-jpa1 [compile].executor": "Run",
@@ -81,20 +72,7 @@
       <recent name="C:\Java OOP\wsb_jpa\wsb-jpa1\src\main\test\com\capgemini\wsb\service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in wsb-jpa1">
-    <configuration name="WsbJpaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.WsbJpaApplication" />
-      <module name="wsb-jpa1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.capgemini.wsb.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PatientDaoTest (1)">
     <configuration name="AddressDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wsb-jpa1" />
       <extension name="coverage">
@@ -110,10 +88,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in wsb-jpa1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PatientDaoTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wsb-jpa1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.persistance.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.persistance.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.persistance.dao.PatientDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatientDaoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wsb-jpa1" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="PatientDaoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatientDaoTest.testFindPatientsWithMoreThanXVisits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wsb-jpa1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.capgemini.wsb.persistance.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.capgemini.wsb.persistance.dao" />
+      <option name="MAIN_CLASS_NAME" value="com.capgemini.wsb.persistance.dao.PatientDaoTest" />
+      <option name="METHOD_NAME" value="testFindPatientsWithMoreThanXVisits" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,43 +143,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="wsb-jpa1 [test]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="test" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/wsb-jpa1" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in wsb-jpa1" />
-        <item itemvalue="JUnit.PatientServiceTest" />
+        <item itemvalue="JUnit.PatientDaoTest (1)" />
+        <item itemvalue="JUnit.PatientDaoTest.testFindPatientsWithMoreThanXVisits" />
+        <item itemvalue="JUnit.PatientDaoTest" />
         <item itemvalue="JUnit.AddressDaoTest" />
-        <item itemvalue="Maven.wsb-jpa1 [test]" />
-        <item itemvalue="Application.WsbJpaApplication" />
+        <item itemvalue="JUnit.PatientServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -205,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715528047291</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="LAB2 Data access for the Patient Entity and tests">
+      <option name="closed" value="true" />
+      <created>1715790892543</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715790892543</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,6 +222,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added SQL inserts" />
     <MESSAGE value="LAB1 Add SQL inserts, Fix code, Add relation" />
-    <option name="LAST_COMMIT_MESSAGE" value="LAB1 Add SQL inserts, Fix code, Add relation" />
+    <MESSAGE value="LAB2 Data access for the Patient Entity and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="LAB2 Data access for the Patient Entity and tests" />
   </component>
 </project>
